@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import {User} from '../models/User';
 
 export const nome = (req: Request, res: Response) => {
     let nome: string = req.query.nome as string;
@@ -30,3 +31,21 @@ export const idadeAction = (req: Request, res: Response) => {
         mostrarIdade
     });
 };
+
+type User = {
+    name: string,
+    age: number
+}
+
+export const NovoUsuario = async (req: Request, res: Response) => {
+    const name:User = req.body.name;
+    const age:User = req.body.age;
+
+    if(name && age) {
+        const user = await User.create({
+            name,
+            age
+        })
+    }
+    res.redirect('/')
+}

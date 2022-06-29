@@ -4,12 +4,16 @@ import {User } from '../models/User';
 import {Op} from 'sequelize';
 
 export const home = async (req: Request, res: Response)=>{
-    let users = await User.findAll({
-        where: {
-            age: {
-                [Op.gte]: 40
-            }
-        }
+   /*let user = User.build({
+        name: 'Tianinha',
+        age: 22
+   });
+
+    await user.save();
+    */
+
+    const user = await User.create({
+        name: 'Dindin',
     });
 
     let age: number = 90;
@@ -29,6 +33,6 @@ export const home = async (req: Request, res: Response)=>{
         products: list,
         expensives: expensiveList,
         frasesDoDia: [],
-        users
+       
     });
 };
